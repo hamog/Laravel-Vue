@@ -14,6 +14,10 @@ npm install
 * Rename .env.example to .env
 * Change your database credentials on the .env file
 * Run the migrations seed data on your database.
+* Run
+```PHP
+php artisan key:generate
+```
 ```PHP
 php artisan migrate --seed
 ```
