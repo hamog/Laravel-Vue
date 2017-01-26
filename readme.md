@@ -3,28 +3,34 @@
 This basic SPA is boostrapped with Laravel 5.4, Vue.js 2, VueRouter, Axios and so much more !
 ##Installation
 * Clone or download the repository
+
 * CD in project root directory and Run
 ```PHP
 composer install 
 ```
-* Run
+* Run 
 ```PHP
 npm install
 ```
+
 * Rename .env.example to .env
+
 * Change your database credentials on the .env file
-* Run the migrations seed data on your database.
-* Run
+
+* Run the generate application key
 ```PHP
 php artisan key:generate
 ```
-* Run
+
+* Run the migrations and seed data on your database
 ```PHP
 php artisan migrate --seed
 ```
+
 * Run 
 ```PHP
 php artisan serve
 ```
+
 * And you're good to go !
 
