@@ -19,7 +19,7 @@
                 Laravel 5.4 and Vue.js 2
             @endslot
             @slot('description')
-                This application is test and implemented by Laravel 5.4 and Vue.js 2.
+                The Single page Application is test and implemented by Laravel 5.4 and Vue.js 2.
             @endslot
         @endcomponent
 
