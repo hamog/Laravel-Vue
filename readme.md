@@ -18,6 +18,7 @@ npm install
 ```PHP
 php artisan key:generate
 ```
+* Run
 ```PHP
 php artisan migrate --seed
 ```
