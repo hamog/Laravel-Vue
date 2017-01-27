@@ -54,16 +54,23 @@
         },
         methods: {
             createNote: function () {
+                this.success = '';
                 let data = this.note;
 
                 axios.post('/note', data)
-                    .then(response => this.success = response.data.message)
-                    .catch(error => this.errors = error.response.data);
+                    .then(response => this.onSuccess(response.data))
+                    .catch(error => this.onFail(error.response.data));
 
-                this.note = { name: '', description: '' };
             },
             clearError: function (field) {
                 delete this.errors[field];
+            },
+            onSuccess: function (data) {
+                this.success = data.message;
+                this.note = { name: '', description: '' };
+            },
+            onFail: function (error) {
+                this.errors = error;
             }
         }
     }
