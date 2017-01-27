@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Note;
+use App\User;
 use Illuminate\Http\Request;
 
 class NoteController extends Controller
@@ -24,7 +25,7 @@ class NoteController extends Controller
      */
     public function index()
     {
-        return $this->note->with('user')->get();
+        return $this->note->with('user')->latest()->get();
     }
 
     /**
@@ -40,13 +41,23 @@ class NoteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
-        $this->note->create($request->all());
-
+        //Validation
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required|min:10'
+        ]);
+        //Store note
+        $this->note->user_id = $user->inRandomOrder()->value('id');
+        $this->note->name = $request->name;
+        $this->note->description = $request->description;
+        $this->note->save();
+        //Response
         return response()->json([
             'message' => 'Note Created.'
         ]);

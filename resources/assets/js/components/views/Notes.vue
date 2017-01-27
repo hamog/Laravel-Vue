@@ -4,6 +4,7 @@
         <ul>
             <li v-for="note in notes">{{ note.name }} - <strong>{{ note.user.name }}</strong></li>
         </ul>
+        <modal></modal>
     </section>
 </template>
 
@@ -15,7 +16,7 @@
             }
         },
         created: function () {
-            axios.get('/api/note')
+            axios.get('/note')
                 .then(response => this.notes = response.data)
                 .catch(error => console.log(error.response.data));
         }
