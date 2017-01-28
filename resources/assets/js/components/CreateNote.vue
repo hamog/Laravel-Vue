@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p class="alert alert-success" v-if="success" v-text="success"></p>
+        <alert type="success" message="Note Created." v-if="success"></alert>
         <form action="/note" method="post" @submit.prevent="createNote" @keydown="clearError($event.target.name)">
             <div :class="['form-group', errors.name ? 'has-error' : '']">
                 <label for="name">Note Name</label>
@@ -28,12 +28,12 @@
                     description: ''
                 },
                 errors: [],
-                success: ''
+                success: false
             }
         },
         methods: {
             createNote: function () {
-                this.success = '';
+                this.success = false;
                 let data = this.note;
 
                 axios.post('/note', data)
@@ -45,7 +45,9 @@
                 delete this.errors[field];
             },
             onSuccess: function (data) {
-                this.success = data.message;
+                if (data.success) {
+                    this.success = true;
+                }
                 this.note = { name: '', description: '' };
             },
             onFail: function (error) {

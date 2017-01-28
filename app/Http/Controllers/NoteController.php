@@ -59,7 +59,7 @@ class NoteController extends Controller
         $this->note->save();
         //Response
         return response()->json([
-            'message' => 'Note Created.'
+            'success' => true
         ]);
     }
 
