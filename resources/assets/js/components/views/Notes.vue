@@ -5,7 +5,7 @@
             <li v-for="note in notes">
                 {{ note.name }} - <strong>{{ note.user.name }}</strong> 
 
-                <a :href="'/note/' + note.id" @click.prevent="deleteNote(note.id)">
+                <a :href="'/note/' + note.id" @click.prevent="deleteNote(note.id)" data-toggle="tooltip" data-placement="right" title="Delete Note">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </a>
             </li>
