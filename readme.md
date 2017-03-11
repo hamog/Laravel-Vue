@@ -19,6 +19,7 @@ git clone https://github.com/hamog/Laravel-Vue.git
 
 * CD in project root directory and Run
 ```PHP
+cd Laravel-Vue/
 composer install 
 ```
 * Run 
