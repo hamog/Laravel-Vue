@@ -1,9 +1,9 @@
-#Laravel-Vue
+# Laravel-Vue
 ![Demo Picture](screenshots/app.png)
 ![Demo Picture](screenshots/create-note.png)
 This basic SPA is boostrapped with Laravel 5.4, Vue.js 2, VueRouter, Axios and so much more !
 
-##Features
+## Features
 * Basic Routing with VueRouter 2.0
 * Use VueJS Components and Named Slots
 * Use a Laravel component
@@ -11,7 +11,7 @@ This basic SPA is boostrapped with Laravel 5.4, Vue.js 2, VueRouter, Axios and s
 * List Rendering with VueJS
 * Validation form inputs
 
-##Installation
+## Installation
 * Clone or download the repository
 ```PHP
 git clone https://github.com/hamog/Laravel-Vue.git
@@ -48,6 +48,6 @@ php artisan serve
 
 * And you're good to go !
 
-##CopyRight
+## CopyRight
 This project is open for all.
 
