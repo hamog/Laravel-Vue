@@ -2,10 +2,10 @@
     <section>
         <h3 class="page-header">All Notes</h3>
         <ul v-if="notes">
-            <li v-for="note in notes">
-                {{ note.name }} - <strong>{{ note.user.name }}</strong> 
+            <li v-for="(note, index) in notes">
+                {{ note.name }} - <strong>{{ note.user.name }}</strong>
 
-                <a :href="'/note/' + note.id" @click.prevent="deleteNote(note.id)" data-toggle="tooltip" data-placement="right" title="Delete Note">
+                <a :href="'/note/' + note.id" @click.prevent="deleteNote(note.id, index)" data-toggle="tooltip" data-placement="right" title="Delete Note">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </a>
             </li>
@@ -33,11 +33,6 @@
         created: function () {
             this.getNotes();
         },
-        watch: {
-            notes: function () {
-                this.getNotes();
-            }
-        },
         methods: {
             getNotes: function () {
                 axios.get('/note')
@@ -45,8 +40,8 @@
                     .catch(error => console.log(error.response.data));
             },
 
-            deleteNote: function (id) {
-                swal({
+            deleteNote: function (id, idx) {
+              swal({
                     title: "Are you sure?",
                     text: "You will not be able to recover this note!",
                     type: "warning",
@@ -60,6 +55,8 @@
                         .then(response => swal("Deleted!", response.data.msg, "success"))
                         .catch(error => console.log(error.response.data));
                 });
+                
+                this.notes.splice(idx, 1);
             }
         }
     }
