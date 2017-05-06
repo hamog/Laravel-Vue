@@ -55,7 +55,7 @@
                         .then(response => swal("Deleted!", response.data.msg, "success"))
                         .catch(error => console.log(error.response.data));
                 });
-                
+                //Update notes
                 this.notes.splice(idx, 1);
             }
         }

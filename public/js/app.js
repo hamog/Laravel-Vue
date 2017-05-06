@@ -15036,7 +15036,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return console.log(error.response.data);
                 });
             });
-
+            //Update notes
             this.notes.splice(idx, 1);
         }
     }
@@ -35930,7 +35930,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.errors.description[0]))]) : _vm._e()]), _vm._v(" "), _c('button', {
     staticClass: "btn btn-primary",
     attrs: {
-      "type": "submit"
+      "type": "submit",
+      "a": ""
     }
   }, [_vm._v("Create")])])], 1)
 },staticRenderFns: []}

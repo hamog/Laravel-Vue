@@ -14,7 +14,7 @@
 
                 <span class="help text-danger" v-if="errors.description">{{ errors.description[0] }}</span>
             </div>
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary"a>Create</button>
         </form>
     </div>
 </template>
