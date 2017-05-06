@@ -14959,6 +14959,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         onSuccess: function onSuccess(data) {
             if (data.success) {
                 this.success = true;
+                this.$emit('updateNotes', data.notes);
             }
             this.note = { name: '', description: '' };
         },
@@ -15021,6 +15022,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         deleteNote: function deleteNote(id, idx) {
+            var notes = this.notes;
             swal({
                 title: "Are you sure?",
                 text: "You will not be able to recover this note!",
@@ -15031,13 +15033,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 closeOnConfirm: false
             }, function () {
                 axios.delete('/note/' + id).then(function (response) {
-                    return swal("Deleted!", response.data.msg, "success");
+                    swal("Deleted!", response.data.msg, "success");
+                    notes.splice(idx, 1);
                 }).catch(function (error) {
                     return console.log(error.response.data);
                 });
             });
             //Update notes
-            this.notes.splice(idx, 1);
+            this.notes = notes;
+        },
+        getUpdatedNotes: function getUpdatedNotes(notes) {
+            this.notes = notes;
         }
     }
 };
@@ -35930,8 +35936,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.errors.description[0]))]) : _vm._e()]), _vm._v(" "), _c('button', {
     staticClass: "btn btn-primary",
     attrs: {
-      "type": "submit",
-      "a": ""
+      "type": "submit"
     }
   }, [_vm._v("Create")])])], 1)
 },staticRenderFns: []}
@@ -36000,7 +36005,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     slot: "title"
   }, [_vm._v("Create New Note")]), _vm._v(" "), _c('p', {
     slot: "body"
-  }, [_c('create-note')], 1)])], 1)
+  }, [_c('create-note', {
+    on: {
+      "updateNotes": _vm.getUpdatedNotes
+    }
+  })], 1)])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

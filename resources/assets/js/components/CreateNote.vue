@@ -14,7 +14,7 @@
 
                 <span class="help text-danger" v-if="errors.description">{{ errors.description[0] }}</span>
             </div>
-            <button type="submit" class="btn btn-primary"a>Create</button>
+            <button type="submit" class="btn btn-primary">Create</button>
         </form>
     </div>
 </template>
@@ -28,7 +28,7 @@
                     description: ''
                 },
                 errors: [],
-                success: false
+                success: false,
             }
         },
         methods: {
@@ -47,6 +47,7 @@
             onSuccess: function (data) {
                 if (data.success) {
                     this.success = true;
+                    this.$emit('updateNotes', data.notes);
                 }
                 this.note = { name: '', description: '' };
             },

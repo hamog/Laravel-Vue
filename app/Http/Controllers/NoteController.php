@@ -59,7 +59,8 @@ class NoteController extends Controller
         $this->note->save();
         //Response
         return response()->json([
-            'success' => true
+            'success' => true,
+            'notes' => $this->note->with('user')->latest()->get()
         ]);
     }
 

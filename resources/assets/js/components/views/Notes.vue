@@ -17,7 +17,7 @@
         <modal>
             <h3 slot="title">Create New Note</h3>
             <p slot="body">
-                <create-note></create-note>
+                <create-note @updateNotes="getUpdatedNotes"></create-note>
             </p>
         </modal>
     </section>
@@ -41,6 +41,7 @@
             },
 
             deleteNote: function (id, idx) {
+              let notes = this.notes;
               swal({
                     title: "Are you sure?",
                     text: "You will not be able to recover this note!",
@@ -50,13 +51,19 @@
                     confirmButtonText: "Yes, delete it!",
                     closeOnConfirm: false
                 },
-                function(){
+                function (){
                     axios.delete('/note/' + id)
-                        .then(response => swal("Deleted!", response.data.msg, "success"))
+                        .then(function (response) {
+                          swal("Deleted!", response.data.msg, "success");
+                          notes.splice(idx, 1);
+                        })
                         .catch(error => console.log(error.response.data));
                 });
                 //Update notes
-                this.notes.splice(idx, 1);
+                this.notes = notes;
+            },
+            getUpdatedNotes(notes) {
+              this.notes = notes;
             }
         }
     }
